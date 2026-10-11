@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090b14">
+<title>SENSI LAB — Free Fire Sensitivity Generator</title>
+<style>
+:root{--bg:#080a12;--panel:#111522;--panel2:#151b2c;--line:#28304a;--text:#f5f7ff;--muted:#8d97b4;--cyan:#48f2e3;--purple:#a76cff;--pink:#ff5db1}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 10% 0%,#17203b 0,transparent 38%),radial-gradient(ellipse at 100% 30%,#25123b 0,transparent 32%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;background-image:linear-gradient(#66709922 1px,transparent 1px),linear-gradient(90deg,#66709922 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to bottom,black,transparent 85%)}
+.wrap{width:min(1160px,calc(100% - 36px));margin:auto;position:relative}.nav{display:flex;align-items:center;justify-content:space-between;padding:25px 0 38px}.brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:2px}.logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--cyan),var(--purple));display:grid;place-items:center;color:#080b14;font-size:21px;box-shadow:0 0 28px #48f2e344}.navlinks{display:flex;gap:27px;color:var(--muted);font-size:13px}.navlinks a{color:inherit;text-decoration:none}.navlinks a:hover{color:var(--cyan)}.pill{border:1px solid #315c65;background:#102329;color:var(--cyan);padding:8px 12px;border-radius:30px;font-size:11px;letter-spacing:1.2px;font-weight:800}
+.hero{padding:8px 0 29px;text-align:center}.eyebrow{font-size:11px;letter-spacing:3px;color:var(--cyan);font-weight:800}.hero h1{font-size:clamp(35px,6vw,62px);line-height:1.05;letter-spacing:-2px;margin:15px 0 14px;font-weight:950}.gradient{background:linear-gradient(90deg,#fff 15%,var(--cyan) 48%,#b28aff 82%);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{color:var(--muted);margin:0 auto;max-width:590px;line-height:1.7;font-size:14px}
+.layout{display:grid;grid-template-columns:.88fr 1.12fr;gap:18px;align-items:stretch;margin-top:24px}.card{background:linear-gradient(145deg,#151a2aee,#0e1220f5);border:1px solid var(--line);border-radius:22px;padding:25px;box-shadow:0 20px 65px #0003;backdrop-filter:blur(14px)}.cardhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:23px}.cardhead h2{font-size:13px;letter-spacing:1.5px;margin:0}.step{font-size:10px;color:var(--muted);border:1px solid var(--line);padding:6px 9px;border-radius:7px}
+label{display:block;color:#bac3dc;font-size:12px;font-weight:700;margin:17px 0 9px}.input,select{width:100%;background:#090d18;border:1px solid #303954;border-radius:12px;padding:15px 14px;color:var(--text);outline:none;font-size:14px;transition:.2s}.input:focus,select:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #48f2e315}select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%238d97b4' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center}
+.hint{font-size:11px;color:#68728f;margin-top:8px;line-height:1.5}.styles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stylebtn{background:#0b0f1b;color:#a9b2cd;border:1px solid #303954;border-radius:10px;padding:12px 5px;font-size:11px;cursor:pointer}.stylebtn.active{background:#142a30;border-color:var(--cyan);color:var(--cyan);box-shadow:inset 0 0 20px #48f2e30b}.primary{margin-top:23px;width:100%;border:0;border-radius:12px;padding:16px 12px;background:linear-gradient(100deg,var(--cyan),#70c8ff 52%,#a77bff);color:#071018;font-size:12px;font-weight:950;letter-spacing:1.2px;cursor:pointer;box-shadow:0 9px 28px #48f2e322;transition:transform .18s,filter .18s}.primary:hover{transform:translateY(-2px);filter:brightness(1.08)}.primary:active{transform:translateY(0)}
+.results{position:relative;overflow:hidden}.results:after{content:"";position:absolute;width:200px;height:200px;border-radius:50%;border:1px solid #48f2e311;right:-65px;top:-80px;box-shadow:0 0 0 25px #48f2e308,0 0 0 50px #48f2e305;pointer-events:none}.resulttop{display:flex;justify-content:space-between;gap:15px;align-items:center;margin-bottom:22px}.resulttop h2{font-size:13px;letter-spacing:1.5px;margin:0 0 7px}.resulttop p{margin:0;color:var(--muted);font-size:11px}.status{font-size:10px;color:#7f8aa9;border:1px solid var(--line);padding:7px 10px;border-radius:8px;white-space:nowrap}.status.ready{color:var(--cyan);border-color:#315e60;background:#112226}
+.devicebar{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-radius:11px;background:#0a0f1b;border:1px solid #252d43;margin-bottom:18px;font-size:12px}.devicebar span:first-child{color:var(--muted)}.devicebar strong{color:var(--cyan);font-weight:750}
+.sensilist{display:grid;grid-template-columns:1fr 1fr;gap:10px}.sensibox{padding:13px 14px;background:#0b101c;border:1px solid #252d43;border-radius:12px}.sensitop{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#aeb8d1;margin-bottom:11px}.num{font-size:23px;font-weight:850;letter-spacing:-.7px;color:white}.unit{font-size:10px;color:#697491;margin-left:3px}.track{height:4px;background:#252d42;border-radius:5px;overflow:hidden;margin-top:10px}.fill{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--purple));border-radius:5px;transition:width .4s}
+.firebox{margin-top:12px;border:1px solid #3a2c52;background:linear-gradient(100deg,#1b1530,#101322);border-radius:13px;padding:15px;display:flex;align-items:center;justify-content:space-between;gap:10px}.fireleft{display:flex;align-items:center;gap:12px}.fireicon{width:42px;height:42px;border-radius:12px;background:#2a1d43;display:grid;place-items:center;color:#d0a9ff;font-size:21px}.firelabel{font-size:11px;color:#a7aec7}.firevalue{font-size:25px;font-weight:900;margin-top:2px}.firevalue small{font-size:12px;color:#8992ae}.firebtn{border:1px solid #65469a;border-radius:9px;padding:8px 10px;color:#d3b5ff;background:#281c3d;font-size:10px;font-weight:800;white-space:nowrap}
+.actions{display:flex;gap:9px;margin-top:15px}.secondary{flex:1;background:#171d2e;border:1px solid #303954;color:#e1e7fb;border-radius:11px;padding:13px 10px;font-size:11px;font-weight:800;cursor:pointer}.secondary:hover{border-color:#7d69ba}.secondary.accent{border-color:#2e7776;color:var(--cyan);background:#102326}
+.notice{display:flex;gap:10px;margin-top:20px;padding:13px 14px;border-radius:12px;background:#111827;border:1px solid #242e44;color:#8e9ab7;font-size:10px;line-height:1.6}.notice b{color:#c5cde2}.footer{display:flex;justify-content:space-between;gap:15px;color:#59637f;font-size:10px;padding:25px 0 34px}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;background:#142b2e;border:1px solid #347a78;color:#a6fff5;padding:12px 18px;border-radius:12px;font-size:12px;transition:.25s;z-index:10;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:780px){.wrap{width:min(100% - 24px,560px)}.nav{padding:18px 0 27px}.navlinks{display:none}.layout{grid-template-columns:1fr;gap:14px}.card{padding:20px}.hero{padding-top:4px}.hero h1{letter-spacing:-1.4px}.footer{flex-direction:column}.sensibox{padding:12px}.num{font-size:21px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="nav">
+    <div class="brand"><div class="logo">⌁</div><span>SENSI<span style="color:var(--cyan)">LAB</span></span></div>
+    <nav class="navlinks"><a href="#generator">Tạo cấu hình</a><a href="#results">Kết quả</a><a href="#guide">Hướng dẫn</a></nav>
+    <div class="pill">● RANDOMIZER V1.0</div>
+  </header>
+  <section class="hero">
+    <div class="eyebrow">AIM • TUNE • REPEAT</div>
+    <h1>TÌM CHẤT RIÊNG<br><span class="gradient">TRONG TỪNG CÚ KÉO</span></h1>
+    <p>Tạo bộ độ nhạy ngẫu nhiên theo thiết bị của bạn. Thử nhiều cấu hình, chọn cảm giác ngắm phù hợp nhất với lối chơi của bạn.</p>
+  </section>
+  <main class="layout" id="generator">
+    <section class="card">
+      <div class="cardhead"><h2>01 / THIẾT BỊ CỦA BẠN</h2><span class="step">INPUT</span></div>
+      <label for="device">Tên thiết bị</label>
+      <input class="input" id="device" maxlength="60" placeholder="Ví dụ: Huawei Mate 20" autocomplete="off">
+      <div class="hint">Nhập tên điện thoại để gắn nhãn cho cấu hình của bạn.</div>
+      <label>Phong cách chơi</label>
+      <div class="styles" role="group" aria-label="Phong cách chơi">
+        <button class="stylebtn active" data-style="balanced" type="button">⚖ Cân bằng</button>
+        <button class="stylebtn" data-style="drag" type="button">↗ Kéo tâm</button>
+        <button class="stylebtn" data-style="steady" type="button">◎ Ổn định</button>
+      </div>
+      <label for="range">Mức ngẫu nhiên</label>
+      <select id="range">
+        <option value="wide">Ngẫu nhiên nhiều</option>
+        <option value="medium" selected>Vừa phải</option>
+        <option value="narrow">Dao động nhẹ</option>
+      </select>
+      <button class="primary" id="generate">✦ &nbsp; Độ nhạy FF OB55</button>
+      <div class="notice"><span>✧</span><div><b>Mẹo nhỏ:</b> Độ nhạy còn phụ thuộc vào FPS, màn hình và thói quen kéo tâm. Hãy thử trong phòng tập rồi tinh chỉnh dần.</div></div>
+    </section>
+    <section class="card results" id="results">
+      <div class="resulttop"><div><h2>02 / CẤU HÌNH CỦA BẠN</h2><p>Thông số gợi ý được tạo ngẫu nhiên</p></div><span class="status" id="status">CHƯA TẠO</span></div>
+      <div class="devicebar"><span>THIẾT BỊ</span><strong id="deviceLabel">Chưa nhập tên thiết bị</strong></div>
+      <div class="sensilist" id="sensilist">
+        <div class="sensibox"><div class="sensitop"><span>Tổng quan</span><span>01</span></div><div><span class="num">—</span></div><div class="track"><div class="fill"></div></div></div>
+        <div class="sensibox"><div class="sensitop"><span>Red Dot</span><span>02</span></div><div><span class="num">—</span></div><div class="track"><div class="fill"></div></div></div>
+        <div class="sensibox"><div class="sensitop"><span>Ống ngắm 2x</span><span>03</span></div><div><span class="num">—</span></div><div class="track"><div class="fill"></div></div></div>
+        <div class="sensibox"><div class="sensitop"><span>Ống ngắm 4x</span><span>04</span></div><div><span class="num">—</span></div><div class="track"><div class="fill"></div></div></div>
+        <div class="sensibox"><div class="sensitop"><span>Ống ngắm AWM</span><span>05</span></div><div><span class="num">—</span></div><div class="track"><div class="fill"></div></div></div>
+        <div class="sensibox"><div class="sensitop"><span>Nhìn xung quanh</span><span>06</span></div><div><span class="num">—</span></div><div class="track"><div class="fill"></div></div></div>
+      </div>
+      <div class="firebox"><div class="fireleft"><div class="fireicon">⊙</div><div><div class="firelabel">KÍCH THƯỚC NÚT BẮN</div><div class="firevalue" id="fireSize">— <small>%</small></div></div></div><div class="firebtn">FIRE BUTTON</div></div>
+      <div class="actions"><button class="secondary" id="copy">▣ &nbsp; SAO CHÉP CẤU HÌNH</button><button class="secondary accent" id="again">↻ &nbsp; TẠO LẠI</button></div>
+    </section>
+  </main>
+  <footer class="footer" id="guide"><span>© SENSI LAB · FAN-MADE TOOL</span><span>Thông số tham khảo ngẫu nhiên · Không liên kết với Garena</span></footer>
+</div>
+<div class="toast" id="toast">Đã sao chép cấu hình!</div>
+<script>
+const fields = [
+  {key:"general", label:"Tổng quan", min:80, max:200},
+  {key:"redDot", label:"Red Dot", min:80, max:200},
+  {key:"scope2x", label:"Ống ngắm 2x", min:70, max:200},
+  {key:"scope4x", label:"Ống ngắm 4x", min:60, max:200},
+  {key:"awm", label:"Ống ngắm AWM", min:10, max:120},
+  {key:"lookAround", label:"Nhìn xung quanh", min:70, max:200}
+];
+let style = "balanced";
+let latest = null;
+document.querySelectorAll(".stylebtn").forEach(btn => btn.addEventListener("click", () => {
+  document.querySelectorAll(".stylebtn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active"); style = btn.dataset.style;
+}));
+function rand(min,max){return Math.floor(Math.random()*(max-min+1))+min}
+function clamp(n,min,max){return Math.max(min,Math.min(max,n))}
+function makeConfig(){
+  const device = document.getElementById("device").value.trim() || "Thiết bị chưa đặt tên";
+  const range = document.getElementById("range").value;
+  const scale = range === "wide" ? 1 : range === "narrow" ? .45 : .72;
+  const bias = style === "drag" ? 12 : style === "steady" ? -10 : 0;
+  const sensitivity = {};
+  fields.forEach((f,i)=>{
+    const center = i===4 ? 76 : 155 + bias - i*5;
+    const swing = Math.round((f.max-f.min)*scale/2);
+    sensitivity[f.key] = clamp(rand(center-swing,center+swing),f.min,f.max);
+  });
+  const fireButtonSize = rand(38,65);
+  return {device, style, sensitivity, fireButtonSize, generatedAt:new Date().toISOString(), simulation:true};
+}
+function render(config){
+  latest=config;
+  document.getElementById("deviceLabel").textContent=config.device;
+  document.getElementById("status").textContent="✓ ĐÃ TẠO";
+  document.getElementById("status").classList.add("ready");
+  const list=document.getElementById("sensilist");
+  list.innerHTML=fields.map((f,i)=>{
+    const value=config.sensitivity[f.key];
+    return `<div class="sensibox"><div class="sensitop"><span>${f.label}</span><span>${String(i+1).padStart(2,"0")}</span></div><div><span class="num">${value}</span><span class="unit">/ 200</span></div><div class="track"><div class="fill" style="width:${value/2}%"></div></div></div>`;
+  }).join("");
+  document.getElementById("fireSize").innerHTML=`${config.fireButtonSize} <small>%</small>`;
+}
+function generate(){render(makeConfig())}
+document.getElementById("generate").addEventListener("click",generate);
+document.getElementById("again").addEventListener("click",generate);
+document.getElementById("copy").addEventListener("click",async()=>{
+  if(!latest){generate()}
+  const text=JSON.stringify(latest,null,2);
+  try{await navigator.clipboard.writeText(text);showToast("Đã sao chép cấu hình!")}
+  catch(e){const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();showToast("Đã sao chép cấu hình!")}
+});
+let toastTimer;
+function showToast(message){const t=document.getElementById("toast");t.textContent=message;t.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2100)}
+document.getElementById("device").addEventListener("keydown",e=>{if(e.key==="Enter")generate()});
+</script>
+</body>
+</html>
